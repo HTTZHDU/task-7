@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>task-7</title>
+</head>
+<style type="text/css">
+body {
+    height: 300px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    background: #fff;
+}
+
+#father-node {
+    border: 2px solid #000;
+    width: 800px;
+    height: 180px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: stretch;
+    align-items: stretch;
+    -webkit-justify-content: center;
+    justify-content: center;
+    flex-flow: row;
+    background: #fff;
+}
+
+#node1,
+#node2 {
+    width: 360px;
+    margin: 14px;
+    border: 2px solid #000;
+    flex-flow: row;
+    display: -webkit-flex;
+    display: flex;
+    background: #fff;
+    /*-webkit-align-items: stretch;
+   align-items: stretch;
+    -webkit-justify-content: center;
+    justify-content: center;*/
+}
+
+.child1 {
+    width: 160px;
+    margin: 16px;
+    border: 2px solid #000;
+    flex-flow: row;
+    display: -webkit-flex;
+    display: flex;
+    background: #fff;
+}
+
+.node {
+    width: 40px;
+    margin: 14px;
+    border: 2px solid #000;
+    background: #fff;
+}
+</style>
+
+<body>
+    <!--  <div id="main"> -->
+    <div id="father-node">
+        <div id="node1">
+            <div class="child1">
+                <div class="node"></div>
+                <div class="node"></div>
+            </div>
+            <div class="child1">
+                <div class="node"></div>
+                <div class="node"></div>
+            </div>
+        </div>
+        <div id="node2">
+            <div class="child1">
+                <div class="node"></div>
+                <div class="node"></div>
+            </div>
+            <div class="child1">
+                <div class="node"></div>
+                <div class="node"></div>
+            </div>
+        </div>
+    </div>
+    <button id="btn-1" onclick="PreOrder()">先序遍历</button>
+    <button id="btn-2" onclick="InOrder()">中序遍历</button>
+    <button id="btn-3" onclick="PostOrder()">后序遍历</button>
+    <!--  </div> -->
+</body>
+<script type="text/javascript">
+// var dom = document.getElementById("father-node");
+// var node = dom.childNodes;
+// var len = node.length;
+// for (i = 0; i < len; i++) {
+//     if (node[i].nodeType == 3) {
+//         dom.removeChild(node[i]);
+//     }
+// }
+// function Change(x) {
+//     var timer = null;
+//     x.style.background = "#f00";
+//     timer = setInterval(function() {
+//         if (timer == 1000) {
+//             clearInterval(timer);
+//         } else {
+//             x.style.background = "#fff";
+//             Child();
+//         }
+//     }, 1000)
+//     function Child() {
+//         var length = x.firstChild.childNodes.length;
+//         var node1 = x.firstChild.childNodes;
+//         // for (i = 0; i < length; i++) {
+//         //     if (node1[i].nodeType != 1) {
+//         //         x.firstChild.removeChild(node1[i]);
+//         //     }
+//         // }
+//         if (length != 0) {
+//             Change(x.firstChild);
+//         } else {
+//             Change(x.lastChild);
+//         }
+//     }
+// }
+// 先序遍历
+function PreOrder() {
+    var node = document.getElementsByTagName("div");
+    setInterval(Order, 1000);
+    var i = 0;
+
+    function Order() {
+        if (i < node.length) {
+            node[i].style.background = "red";
+        }
+        i++
+    }
+}
+// 中序遍历
+function InOrder() {
+
+    var node = document.getElementById("father-node");
+    var i = 0;
+    var arr = [];
+    inOrder(node);
+
+    function inOrder(x) {
+        if (x) {
+            inOrder(x.firstElementChild);
+            arr.push(x);
+            inOrder(x.lastElementChild);
+        }
+    }
+    setInterval(Order, 500);
+
+    function Order() {
+        if (i < arr.length) {
+            arr[i].style.background = "red";
+        }
+        i++;
+    }
+
+}
+
+// 后序遍历
+function PostOrder() {
+    var node = document.getElementById("father-node");
+    var i = 0;
+    var arr = [];
+    inOrder(node);
+
+    function inOrder(x) {
+        if (x) {
+            inOrder(x.firstElementChild);
+            inOrder(x.lastElementChild);
+            arr.push(x);
+        }
+    }
+    setInterval(Order, 500);
+
+    function Order() {
+        if (i < arr.length) {
+            arr[i].style.background = "red";
+        }
+        i++;
+    }
+
+}
+</script>
+
+</html>
